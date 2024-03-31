@@ -25,8 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        run("https://www.islamicfinder.us/index.php/api/prayer_times?country=US&zipcode=48227")
-        //addRowToTableLayout("test")
+        run("https://api.aladhan.com/v1/timingsByAddress?address=12655+Memorial+Street%2C+Detroit%2C+MI")
     }
 
 
@@ -43,8 +42,9 @@ class MainActivity : AppCompatActivity() {
             }
             override fun onResponse(call: Call, response: Response) {
                 val prayerDTO:PrayerDTO = objectMapper.readValue(response.body()?.string()?: "")
-                val results = prayerDTO.results
-                addRowToTableLayout(results.Isha, results.Maghrib, results.Asr, results.Dhuhr, results.Fajr)
+                System.out.println(prayerDTO)
+                val timings = prayerDTO.data.timings
+                addRowToTableLayout(timings.Isha, timings.Maghrib, timings.Asr, timings.Dhuhr, timings.Fajr)
             }
         })
     }
@@ -68,7 +68,7 @@ class MainActivity : AppCompatActivity() {
         val textView = TextView(this)
         val filteredText = text.replace("%am%", "am").replace("%pm%", "pm")
         textView.text = filteredText
-        textView.setPadding(57,0,0,0)
+        textView.setPadding(80,0,0,0)
         textView.setTextColor(ContextCompat.getColor(this,R.color.black))
         textView.gravity = Gravity.CENTER
         newRow.addView(textView)
