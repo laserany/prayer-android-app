@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        run("https://api.aladhan.com/v1/timingsByAddress?address=12655+Memorial+Street%2C+Detroit%2C+MI")
+        run("https://api.aladhan.com/v1/timingsByAddress?address=9685+Pinehurst+Street%2C+Detroit%2C+MI")
     }
 
 
